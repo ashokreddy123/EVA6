@@ -134,5 +134,6 @@ After 50 iterations, the total loss decrement as a function of learning rate -
 
 ![Alt text](Images/total_loss_as_learning_rate.PNG?raw=true "Optional Title")
 
+So, with higher learning rate(in the range 0.1 to 2), the network learns fast
 
 
