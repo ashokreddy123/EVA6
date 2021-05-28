@@ -16,7 +16,8 @@ train a simple neural network using excel shet and understanding the concept of 
 
 **Network Architecture** -
 
-https://drive.google.com/file/d/1bKfADL6pJVjson-UqSoFEmBvLfrPz6qy/view?usp=sharing
+
+![Alt text](Images/netwok.PNG?raw=true "Optional Title")
 
 Network used - 2 layer network with 2 neurons in each. Each layer is a fully connected layer
 
