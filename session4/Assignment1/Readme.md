@@ -125,9 +125,14 @@ From the total loss, weights are updated through back propagation using **gradie
 
 ​	**wi = wi - (learning_rate)*∂E_total/∂wi** for weight wi
 
+The screenshot for initial weights taken - 
 
+![Alt text](Images/initial_weights.PNG?raw=true "Optional Title")
 
 After 50 iterations, the total loss decremnt as a function of learning rate - 
+
+
+![Alt text](Images/total_loss_as_learning_rate.PNG?raw=true "Optional Title")
 
 
 
