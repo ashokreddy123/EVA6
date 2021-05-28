@@ -30,6 +30,10 @@ Dropout is not used as there is no overfitting
 
 All convolutional kernels are of size 3x3 and Batch Normalization is used after every layer
 
+Final Architecture - 
+
+![Alt text](Images/Network.PNG?raw=true "Optional Title")
+
 
 
 #### **Loss Function:**
@@ -46,6 +50,11 @@ All convolutional kernels are of size 3x3 and Batch Normalization is used after 
 
 #### **Training log** 
 
+![Alt text](Images/log.PNG?raw=true "Optional Title")
 
 
 #### **Results**
+
+![Alt text](Images/accuracy.PNG?raw=true "Optional Title")
+
+![Alt text](Images/loss.PNG?raw=true "Optional Title")
