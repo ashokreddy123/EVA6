@@ -40,11 +40,13 @@ Backward propagation -
 
 image - 
 
-![netwok](F:\Rohan_course\session_4\Assignment-1\netwok.PNG)
-
-
+![](network.PNG)
 
 vk;smvms;vs
+
+
+
+![](network.PNG)
 
 
 
