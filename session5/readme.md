@@ -75,6 +75,7 @@ Model performance can be improved by introducing regularization techniques
 **Log :**
 
 
+![Alt text](images/code_2_log.PNG?raw=true "Optional Title")
 
 **Code 3:**
 
@@ -99,6 +100,7 @@ Can use image augmentation techniques to correct for the slightly rotated images
 **Log :**
 
 
+![Alt text](images/code_3_log.PNG?raw=true "Optional Title")
 
 **Code 4:**
 
@@ -124,6 +126,7 @@ No need to use LR technique as accuracy reached 99.4% within 14 epochs
 
 **Log :**
 
+![Alt text](images/code_4_log.PNG?raw=true "Optional Title")
 
 
 
