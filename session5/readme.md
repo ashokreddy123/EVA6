@@ -44,7 +44,7 @@ Model is heavy for recognizing digits. Need to decrease parameters
 
 **Log :**
 
-
+![Alt text](images/code_1_log.PNG?raw=true "Optional Title")
 
 
 
