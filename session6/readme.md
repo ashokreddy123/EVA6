@@ -46,23 +46,39 @@
 
 **Normalization calculation for batch size of 4  :**
 
-
+![Alt text](images/2x2.PNG?raw=true "Optional Title")
 
 **Graphs :**
 
 1)**Training Loss:**
 
+![Alt text](images/train_loss.PNG?raw=true "Optional Title")
+
 2)**Testing Loss:**
+
+![Alt text](images/test_loss.PNG?raw=true "Optional Title")
 
 3)**Training Accuracy:**
 
+![Alt text](images/train_accuracy.PNG?raw=true "Optional Title")
+
 4)**Testing Accuracy:**
+
+![Alt text](images/test_accuracy.PNG?raw=true "Optional Title")
 
 **Misclassified Images  for:**
 
 1)**Batch Normalization:**
 
+![Alt text](images/batch_mis_classification.PNG?raw=true "Optional Title")
+
 2)**Layer Normalization:**
 
+
+![Alt text](images/layer_mis_classification.PNG?raw=true "Optional Title")
+
 3)**Group Normalization:**
+
+
+![Alt text](images/group_mis_classification.PNG?raw=true "Optional Title")
 
