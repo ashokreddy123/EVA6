@@ -120,8 +120,8 @@ def train(model, device, train_loader, optimizer, epoch):
         epoch_loss += loss
         #pbar.set_description(desc= f'Loss={loss.item()} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
         train_acc.append(100*correct/processed)
-        
-     return epoch_loss/len(train_loader.dataset),100*correct/processed  
+      
+    return epoch_loss/len(train_loader.dataset),100*correct/processed  
 
 
 def test(epoch):
