@@ -103,6 +103,9 @@ def train(model, device, train_loader, optimizer, epoch):
     train_loss = 0
     correct = 0
     total = 0
+    correct = 0
+    processed = 0
+    epoch_loss = 0
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         data, targets = inputs.to(device), targets.to(device)
         optimizer.zero_grad()
