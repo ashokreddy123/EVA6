@@ -116,7 +116,7 @@ def train(model, device, train_loader, optimizer, epoch):
         train_losses.append(loss)
         
         pred = y_pred.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
-        correct += pred.eq(target.view_as(pred)).sum().item()
+        correct += pred.eq(targets.view_as(pred)).sum().item()
         processed += len(data)
         epoch_loss += loss
         #pbar.set_description(desc= f'Loss={loss.item()} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
