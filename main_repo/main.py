@@ -14,7 +14,7 @@ import os
 import argparse
 
 from models import *
-from utils import progress_bar
+
 
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
@@ -90,9 +90,13 @@ optimizer = optim.SGD(net.parameters(), lr=args.lr,
                       momentum=0.9, weight_decay=5e-4)
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
+train_losses = []
+test_losses = []
+train_acc = []
+test_acc = []
 
 # Training
-def train(epoch):
+def train(model, device, train_loader, optimizer, epoch):
     print('\nEpoch: %d' % epoch)
     net.train()
     train_loss = 0
@@ -101,18 +105,23 @@ def train(epoch):
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         inputs, targets = inputs.to(device), targets.to(device)
         optimizer.zero_grad()
-        outputs = net(inputs)
+        y_pred = model(data)
+  
+        y_pred = y_pred.squeeze(-1)
+        y_pred = y_pred.squeeze(-1)
+    
         loss = criterion(outputs, targets)
-        loss.backward()
-        optimizer.step()
-
-        train_loss += loss.item()
-        _, predicted = outputs.max(1)
-        total += targets.size(0)
-        correct += predicted.eq(targets).sum().item()
-
-        progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
-                     % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
+    
+        train_losses.append(loss)
+        
+        pred = y_pred.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
+        correct += pred.eq(target.view_as(pred)).sum().item()
+        processed += len(data)
+        epoch_loss += loss
+        #pbar.set_description(desc= f'Loss={loss.item()} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
+        train_acc.append(100*correct/processed)
+        
+     return epoch_loss/len(train_loader.dataset),100*correct/processed  
 
 
 def test(epoch):
@@ -122,37 +131,41 @@ def test(epoch):
     correct = 0
     total = 0
     with torch.no_grad():
-        for batch_idx, (inputs, targets) in enumerate(testloader):
-            inputs, targets = inputs.to(device), targets.to(device)
-            outputs = net(inputs)
-            loss = criterion(outputs, targets)
+        for data, target in test_loader:
+            data, target = data.to(device), target.to(device)
+            output = model(data)
+            output = output.squeeze(-1)
+            output = output.squeeze(-1)
+            test_loss += F.nll_loss(output, target, reduction='sum').item()  # sum up batch loss
+            pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
+            correct += pred.eq(target.view_as(pred)).sum().item()
 
-            test_loss += loss.item()
-            _, predicted = outputs.max(1)
-            total += targets.size(0)
-            correct += predicted.eq(targets).sum().item()
+    test_loss /= len(test_loader.dataset)
+    test_losses.append(test_loss)
+    test_acc.append(100. * correct / len(test_loader.dataset))
+    return test_loss,100. * correct / len(test_loader.dataset)
 
-            progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
-                         % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
-
-    # Save checkpoint.
-    acc = 100.*correct/total
-    if acc > best_acc:
-        print('Saving..')
-        state = {
-            'net': net.state_dict(),
-            'acc': acc,
-            'epoch': epoch,
-        }
-        if not os.path.isdir('checkpoint'):
-            os.mkdir('checkpoint')
-        torch.save(state, './checkpoint/ckpt.pth')
-        best_acc = acc
-
-
-for epoch in range(start_epoch, start_epoch+200):
-    train(epoch)
-    test(epoch)
-    scheduler.step()
+  
+model =  net.to(device)
+#model =  Net().to(device)
+optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
+#optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9,dampening=0, weight_decay =0, nesterov=False)
+EPOCHS = 20
+batch_train_losses = []
+batch_test_losses = []
+batch_train_accuracy = []
+batch_test_accuracy = []
+for epoch in range(EPOCHS):
+    #print("EPOCH:", epoch)
+    print("-----------------------------------------------------------------------------------------------------------------------------")
+    epoch_train_losses,epoch_train_accuracy = train(model, device, trainloader, optimizer, epoch)
+    epoch_test_losses,epoch_test_accuracy = test(model, device, testloader)
+    batch_train_losses.append(float(epoch_train_losses))
+    batch_test_losses.append(float(epoch_test_losses))
+    batch_train_accuracy.append(epoch_train_accuracy)
+    batch_test_accuracy.append(epoch_test_accuracy)
+    print("epoch no: ",epoch+1," epoch_train_accuracy: ",epoch_train_accuracy," epoch_test_accuracy: ",epoch_test_accuracy)
+    #print("epoch no: ",epoch+1," epoch_train_losses: ",float(epoch_train_losses)," epoch_test_losses: ",float(epoch_test_losses))
+    #print('batch_train_losses',batch_train_losses)
 
    
