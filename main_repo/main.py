@@ -1,37 +1,5 @@
 
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@ashokreddy123
-kuangliu /
-pytorch-cifar
 
-89
-4k
-
-    1.6k
-
-Code
-Issues 73
-Pull requests 12
-Actions
-Projects
-Wiki
-Security
-
-    Insights
-
-pytorch-cifar/main.py /
-忆扬 Update README
-Latest commit 7ad1b9c on 24 Nov 2020
-History
-3 contributors
-@kuangliu
-@bearpaw
-@fducau
-154 lines (129 sloc) 4.53 KB
 '''Train CIFAR10 with PyTorch.'''
 import torch
 import torch.nn as nn
@@ -187,18 +155,4 @@ for epoch in range(start_epoch, start_epoch+200):
     test(epoch)
     scheduler.step()
 
-    © 2021 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Docs
-
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
-
-
+   
