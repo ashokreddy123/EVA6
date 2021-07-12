@@ -111,7 +111,7 @@ def train(model, device, train_loader, optimizer, epoch):
         y_pred = y_pred.squeeze(-1)
         y_pred = y_pred.squeeze(-1)
     
-        loss = criterion(outputs, targets)
+        loss = criterion(y_pred, targets)
     
         train_losses.append(loss)
         
