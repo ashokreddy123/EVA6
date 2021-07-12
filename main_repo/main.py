@@ -13,7 +13,8 @@ import torchvision.transforms as transforms
 import os
 import argparse
 
-from ..models/resnet import ResNet18
+#from models import *
+from models import resnet
 
 
 
